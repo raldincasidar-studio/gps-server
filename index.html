@@ -189,6 +189,10 @@
             popupAnchor: [0, -40]  // Popup position relative to the icon
         });
 
+        function setMapView(lat, lng) {
+            map.setView([lat, lng], 13);
+        }
+
         // Function to add or update a device marker on the map and update the device list
         function addDevice(name, id, lat, lng) {
             if (markers[id]) {
@@ -196,7 +200,7 @@
                 markers[id].setLatLng([lat, lng]);
                 // Update tooltip content
                 markers[id].getTooltip().setContent(`
-                    <div class="material-card">
+                    <div class="material-card" onclick="setMapView(${lat}, ${lng})">
                         <h4>Device: ${name}</h4>
                         <p><strong>Device ID:</strong> ${id}</p>
                         <p><strong>Location:</strong> ${lat}, ${lng}</p>
