@@ -127,7 +127,7 @@ app.get('/api/devices/update', async (req, res) => {
             return res.json(device); // Respond with the updated device
         } else {
             // Device does not exist, add a new one
-            device = new Device({ id, name, latitude: parseFloat(latitude), longitude: parseFloat(longitude) });
+            device = new Device({ _id: id, name, latitude: parseFloat(latitude), longitude: parseFloat(longitude) });
             await device.save();
             return res.status(201).json(device); // Respond with the created device
         }
