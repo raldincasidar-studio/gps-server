@@ -260,7 +260,7 @@
             }
 
             // Remove the device from the backend
-            fetch(`http://localhost:3000/api/devices/${id}`, {
+            fetch(`/api/devices/${id}`, {
                 method: 'DELETE'
             })
             .then(response => {
@@ -280,7 +280,7 @@
             var lng = parseFloat(document.getElementById('device-lng').value);
 
             // Add the new device to the backend
-            fetch('http://localhost:3000/api/devices', {
+            fetch('/api/devices', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -313,7 +313,7 @@
         // Fetch devices from the backend
         // Fetch devices from the backend
         function fetchDevices() {
-            fetch('http://localhost:3000/api/devices')
+            fetch('/api/devices')
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Error fetching devices');
