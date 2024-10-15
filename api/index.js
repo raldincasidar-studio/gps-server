@@ -126,18 +126,12 @@ app.get('/api/devices/update', async (req, res) => {
             await device.save();
             return res.json(device); // Respond with the updated device
         } else {
-            // Device does not exist, create a new one
-            const newDevice = new Device({
-                name: "GPS Device", // Default name
-                latitude: parseFloat(latitude),
-                longitude: parseFloat(longitude)
-            });
-            await newDevice.save();
-            return res.status(201).json(newDevice); // Respond with the newly created device
+            // Device does not exist, do not add a new one
+            return res.status(404).json({ message: 'Device not found' });
         }
     } catch (err) {
-        console.error('Error updating or adding device:', err);
-        res.status(500).json({ message: 'Error updating or adding device' });
+        console.error('Error updating device:', err);
+        res.status(500).json({ message: 'Error updating device' });
     }
 });
 
