@@ -240,7 +240,7 @@
             var deviceList = document.getElementById('device-list');
             var deviceItem = document.createElement('div');
             deviceItem.className = 'device-list-item';
-            deviceItem.onclick = setMapView(lat, lng);
+            deviceItem.onclick = `setMapView(lat, lng)`;
             deviceItem.setAttribute('data-id', id);
             deviceItem.innerHTML = `
                 <h4>${name}</h4>
