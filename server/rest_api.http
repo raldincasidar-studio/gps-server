@@ -1,0 +1,41 @@
+### Fetch all GPS devices
+GET http://localhost:3000/api/devices
+Accept: application/json
+
+###
+
+### Add a new GPS device
+POST http://localhost:3000/api/devices
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Device A",
+  "latitude": 40.7128,
+  "longitude": -74.0060
+}
+
+###
+
+### Edit an existing GPS device by ID
+PUT http://localhost:3000/api/devices/670cc3cccc2595ccb4121f95
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "HATDOG LALAMOVE",
+  "latitude": 53.3074,
+  "longitude": -0.2278
+}
+
+### Note:
+### Replace {{device_id}} with the actual ID of a device from the GET request
+
+###
+
+### Delete a GPS device by ID
+DELETE http://localhost:3000/api/devices/1
+Accept: application/json
+
+### Update or add a GPS device (for your GPS device to call)
+GET http://localhost:3000/api/devices/update?id=<DEVICE_ID>&latitude=<NEW_LATITUDE>&longitude=<NEW_LONGITUDE>
