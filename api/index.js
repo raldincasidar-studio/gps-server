@@ -107,7 +107,7 @@ app.delete('/api/devices/:id', async (req, res) => {
 
 // Route to update or add a GPS device based on ID
 app.get('/api/devices/update', async (req, res) => {
-    const { id, latitude, longitude } = req.query;
+    const { id, latitude, longitude, name = 'GPS Device' } = req.query;
 
     // Validate the request parameters
     if (!id || !latitude || !longitude) {
@@ -126,8 +126,10 @@ app.get('/api/devices/update', async (req, res) => {
             await device.save();
             return res.json(device); // Respond with the updated device
         } else {
-            // Device does not exist, do not add a new one
-            return res.status(404).json({ message: 'Device not found' });
+            // Device does not exist, add a new one
+            device = new Device({ id, name, latitude: parseFloat(latitude), longitude: parseFloat(longitude) });
+            await device.save();
+            return res.status(201).json(device); // Respond with the created device
         }
     } catch (err) {
         console.error('Error updating device:', err);
