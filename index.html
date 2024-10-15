@@ -200,7 +200,7 @@
                 markers[id].setLatLng([lat, lng]);
                 // Update tooltip content
                 markers[id].getTooltip().setContent(`
-                    <div class="material-card" onclick="setMapView(${lat}, ${lng})">
+                    <div class="material-card">
                         <h4>Device: ${name}</h4>
                         <p><strong>Device ID:</strong> ${id}</p>
                         <p><strong>Location:</strong> ${lat}, ${lng}</p>
@@ -240,6 +240,7 @@
             var deviceList = document.getElementById('device-list');
             var deviceItem = document.createElement('div');
             deviceItem.className = 'device-list-item';
+            deviceItem.onclick = setMapView(lat, lng);
             deviceItem.setAttribute('data-id', id);
             deviceItem.innerHTML = `
                 <h4>${name}</h4>
